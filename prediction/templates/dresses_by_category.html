@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ category.name }} Dresses</title>
+</head>
+<body>
+    <h1>{{ category.name }} Dresses</h1>
+    <a href="{% url 'home' %}">Back to Home</a>
+
+    <div>
+        {% for dress in dresses %}
+            <div style="border:1px solid black; margin:10px; padding:10px;">
+                {% if dress.image %}
+                    <img src="{{ dress.image.url }}" width="150" height="200" alt="{{ dress.name }}">
+                {% endif %}
+                <h3>{{ dress.name }}</h3>
+                <p>{{ dress.description }}</p>
+                <p>Price: ₹{{ dress.price }}</p>
+            </div>
+        {% empty %}
+            <p>No dresses available in this category.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
